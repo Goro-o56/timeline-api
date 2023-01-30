@@ -7,7 +7,7 @@ import (
 
 func NewRouter(config config.App) *gin.Engine {
 
-	sh := NewTimelineHandler()
+	sh := NewPersonaHandler()
 	// Initialize application
 	r := gin.Default()
 	r.GET("/", sh.Get)
