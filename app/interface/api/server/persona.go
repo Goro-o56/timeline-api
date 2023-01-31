@@ -22,7 +22,7 @@ func (p *personaHandler) Find(c *gin.Context) {
 	//TODO ここの実装、まだ変数を置けていない
 	c.JSON(http.StatusOK, entity.Persona{
 		ID:        0,
-		Content:   "",
+		Content:   "hoge",
 		CreatedAt: time.Time{},
 	})
 }
