@@ -7,7 +7,6 @@ import (
 	"net/http"
 	"net/http/httptest"
 	"testing"
-	"time"
 	"timeline-api/app/domain/entity"
 )
 
@@ -23,19 +22,13 @@ func TestGet(t *testing.T) {
 	assert.Equal(t, w.Code, http.StatusOK)
 }
 
-func TestGetByQuery(t *testing.T) {
+func TestGetByQueryParam(t *testing.T) {
+
+	h := personaHandler{repo: nil}
 	w := httptest.NewRecorder()
 	_, r := gin.CreateTestContext(w)
 
-	r.GET("/persona", func(c *gin.Context) {
-		element := c.DefaultQuery("element", "Jobs")
-
-		c.JSON(http.StatusOK, entity.Persona{
-			ID:        0,
-			Content:   element,
-			CreatedAt: time.Time{},
-		})
-	})
+	r.GET("/persona", h.Find)
 
 	req, _ := http.NewRequest("GET", "/persona?element=Jobs", nil)
 	r.ServeHTTP(w, req)

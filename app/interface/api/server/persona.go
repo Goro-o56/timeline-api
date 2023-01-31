@@ -19,10 +19,11 @@ func NewPersonaHandler(ur repository.Persona) handler.Persona {
 	}
 }
 func (p *personaHandler) Find(c *gin.Context) {
-	//TODO ここの実装、まだ変数を置けていない
+	element := c.DefaultQuery("element", "Jobs")
+
 	c.JSON(http.StatusOK, entity.Persona{
 		ID:        0,
-		Content:   "hoge",
+		Content:   element,
 		CreatedAt: time.Time{},
 	})
 }
